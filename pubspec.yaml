@@ -1,8 +1,8 @@
 name: proba_sdk_flutter
 description: Mobile framework for Proba platform.
 version: 1.0.0
-maintainer: Proba (https://github.com/proba)
-homepage: https://proba.com
+maintainer: Proba (https://github.com/proba-ai)
+homepage: https://proba.ai
 
 environment:
   sdk: ">=2.7.0 <2.12.0"
