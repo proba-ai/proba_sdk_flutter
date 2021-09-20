@@ -107,11 +107,11 @@ class _DebugWidgetState extends State<_DebugWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
+                    FlatButton(
                       child: Text('Reset'),
                       onPressed: _resetExperiments,
                     ),
-                    TextButton(
+                    FlatButton(
                       child: Text('Reload'),
                       onPressed: _reloadExperiments,
                     ),

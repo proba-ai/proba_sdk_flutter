@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.0.5
+  shared_preferences: ^0.5.12
   uuid: ^2.2.2
   http: ^0.12.2
   dart_jsonwebtoken: ^1.6.2

@@ -14,7 +14,7 @@ dependencies:
   proba_sdk_flutter:
     path: ../
   pretty_json: ^1.1.0
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.0
 
 dev_dependencies:
   flutter_test:

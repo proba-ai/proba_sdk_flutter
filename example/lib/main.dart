@@ -128,15 +128,15 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: WrapAlignment.spaceEvenly,
               direction: Axis.horizontal,
               children: [
-                ElevatedButton(
+                RaisedButton(
                   onPressed: _sdkInitialized() ? null : _initializeSdk,
                   child: Text('Initialize SDK'),
                 ),
-                ElevatedButton(
+                RaisedButton(
                   onPressed: _sdkInitialized() ? _fetchExperiments : null,
                   child: Text('Fetch Experiments'),
                 ),
-                ElevatedButton(
+                RaisedButton(
                   onPressed:
                       _isDebugAllowed() ? () => _showDebug(context) : null,
                   child: Text('Show debug'),
