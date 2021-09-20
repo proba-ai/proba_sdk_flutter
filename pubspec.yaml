@@ -5,7 +5,7 @@ maintainer: Proba (https://github.com/proba)
 homepage: https://proba.com
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.7.0 <2.12.0"
   flutter: ">=1.17.0"
 
 dependencies:
