@@ -3,22 +3,20 @@ part of proba_sdk_flutter;
 class _ProbaDebug {
   _Client _client;
   bool _isOptionsLoaded = false;
-  ShakeDetector _shakeDetector;
+  ShakeDetector? _shakeDetector;
   bool _debugLayerShown = false;
 
   List<Map<String, dynamic>> _experimentsOptions = [];
   Map<String, String> debugExperiments = {};
 
   _ProbaDebug({
-    @required _Client client,
-  }) : _client = client {
-    assert(_client != null);
-  }
+    required _Client client,
+  }) : _client = client;
 
   void enableDebugOnShake({
-    @required BuildContext context,
-    ExperimentsChangedCallback valuesChangedCallback,
-    Map<String, String> experiments,
+    required BuildContext context,
+    required ExperimentsChangedCallback valuesChangedCallback,
+    required Map<String, String> experiments,
   }) {
     _shakeDetector?.stopListening();
     _shakeDetector = ShakeDetector.autoStart(
@@ -38,9 +36,9 @@ class _ProbaDebug {
   }
 
   Future<void> showDebugLayer({
-    @required BuildContext context,
-    ExperimentsChangedCallback valuesChangedCallback,
-    Map<String, String> experiments,
+    required BuildContext context,
+    required ExperimentsChangedCallback valuesChangedCallback,
+    required Map<String, String> experiments,
   }) async {
     if (_debugLayerShown) return;
 

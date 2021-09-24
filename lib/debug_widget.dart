@@ -10,13 +10,13 @@ class _DebugWidget extends StatefulWidget {
   final ExperimentsChangedCallback _valuesChangedCallback;
 
   _DebugWidget({
-    @required bool isOptionsLoaded,
-    @required List<Map<String, dynamic>> experimentsOptions,
-    @required Map<String, String> debugExperiments,
-    @required Map<String, String> experiments,
-    @required Function(bool loaded) optionsLoadedSetter,
-    @required Function experimentsOptionsLoader,
-    @required valuesChangedCallback,
+    required bool isOptionsLoaded,
+    required List<Map<String, dynamic>> experimentsOptions,
+    required Map<String, String> debugExperiments,
+    required Map<String, String> experiments,
+    required Function(bool loaded) optionsLoadedSetter,
+    required Function experimentsOptionsLoader,
+    required ExperimentsChangedCallback valuesChangedCallback,
   })  : _isOptionsLoaded = isOptionsLoaded,
         _experimentsOptions = experimentsOptions,
         _debugExperiments = debugExperiments,
@@ -30,7 +30,7 @@ class _DebugWidget extends StatefulWidget {
 }
 
 class _DebugWidgetState extends State<_DebugWidget> {
-  bool _isOptionsLoaded;
+  bool _isOptionsLoaded = false;
   List<bool> _expanded = [];
 
   @override
@@ -62,9 +62,7 @@ class _DebugWidgetState extends State<_DebugWidget> {
   void _clearDebugExperiments() {
     final debugKeys = widget._debugExperiments.keys.toList(growable: false);
     widget._debugExperiments.clear();
-    if (widget._valuesChangedCallback != null) {
-      widget._valuesChangedCallback(debugKeys);
-    }
+    widget._valuesChangedCallback(debugKeys);
   }
 
   Future<void> _loadExperimentsOptions() async {
@@ -107,11 +105,11 @@ class _DebugWidgetState extends State<_DebugWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    FlatButton(
+                    TextButton(
                       child: Text('Reset'),
                       onPressed: _resetExperiments,
                     ),
-                    FlatButton(
+                    TextButton(
                       child: Text('Reload'),
                       onPressed: _reloadExperiments,
                     ),
@@ -131,7 +129,7 @@ class _DebugWidgetState extends State<_DebugWidget> {
                           children: [
                             Text(
                               'A/B-tests',
-                              style: theme.textTheme.headline4
+                              style: theme.textTheme.headline4!
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
                             Padding(
@@ -179,11 +177,8 @@ class _DebugWidgetState extends State<_DebugWidget> {
                                     groupValue: selectedOption,
                                     onChanged: (value) {
                                       setState(() {
-                                        widget._debugExperiments[key] = value;
-                                        if (widget._valuesChangedCallback !=
-                                            null) {
-                                          widget._valuesChangedCallback([key]);
-                                        }
+                                        widget._debugExperiments[key] = value!;
+                                        widget._valuesChangedCallback([key]);
                                       });
                                     },
                                   ),
@@ -194,8 +189,8 @@ class _DebugWidgetState extends State<_DebugWidget> {
                                       if (widget._experiments[key] == value)
                                         Text(
                                           'Received option',
-                                          style:
-                                              theme.textTheme.overline.copyWith(
+                                          style: theme.textTheme.overline!
+                                              .copyWith(
                                             color: Colors.blue,
                                             fontWeight: FontWeight.bold,
                                           ),

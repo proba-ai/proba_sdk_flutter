@@ -1,11 +1,11 @@
 part of proba_sdk_flutter;
 
 String _generateJwt({
-  @required String sdkToken,
-  String deviceId,
-  String appsFlyerId,
-  String amplitudeUserId,
-  Map<String, dynamic> deviceProperties,
+  required String sdkToken,
+  String? deviceId,
+  String? appsFlyerId,
+  String? amplitudeUserId,
+  Map<String, dynamic>? deviceProperties,
 }) {
   final jwt = JWT({
     'deviceId': deviceId,

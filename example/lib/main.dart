@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _fetchExperiments() {
     if (_showProgress) return;
     setState(() => _showProgress = true);
-    Proba.instance().loadExperiments((_) {
+    Proba.instance()?.loadExperiments((_) {
       if (!mounted) return;
       setState(() => _showProgress = false);
     });
@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool _sdkInitialized() => Proba.instance() != null;
 
-  String _experimentsStr(Map experiments) {
+  String _experimentsStr(Map? experiments) {
     if (experiments == null) return '—';
     return "\n${prettyJson(experiments, indent: 2)}";
   }
@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _isDebugAllowed() => Proba.instance()?.isDebugAllowed ?? false;
 
   void _showDebug(BuildContext context) {
-    Proba.instance().showDebugLayer(
+    Proba.instance()?.showDebugLayer(
       context: context,
       valuesChangedCallback: (_) => setState(() {}),
     );
@@ -77,12 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _toggleDebugOnShake(BuildContext context, bool enabled) {
     if (enabled) {
-      Proba.instance().enableDebugOnShake(
+      Proba.instance()?.enableDebugOnShake(
         context: context,
         valuesChangedCallback: (_) => setState(() {}),
       );
     } else {
-      Proba.instance().disableDebugOnShake();
+      Proba.instance()?.disableDebugOnShake();
     }
     setState(() {
       _debugOnShake = enabled;
@@ -128,15 +128,15 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: WrapAlignment.spaceEvenly,
               direction: Axis.horizontal,
               children: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: _sdkInitialized() ? null : _initializeSdk,
                   child: Text('Initialize SDK'),
                 ),
-                RaisedButton(
+                ElevatedButton(
                   onPressed: _sdkInitialized() ? _fetchExperiments : null,
                   child: Text('Fetch Experiments'),
                 ),
-                RaisedButton(
+                ElevatedButton(
                   onPressed:
                       _isDebugAllowed() ? () => _showDebug(context) : null,
                   child: Text('Show debug'),
@@ -148,11 +148,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       Checkbox(
                         value: _debugOnShake,
                         onChanged: (value) =>
-                            _toggleDebugOnShake(context, value),
+                            _toggleDebugOnShake(context, value!),
                       ),
                       Text(
                         'Use shake',
-                        style: theme.textTheme.button.copyWith(
+                        style: theme.textTheme.button!.copyWith(
                             color: _isDebugAllowed()
                                 ? Colors.black87
                                 : Colors.black26),

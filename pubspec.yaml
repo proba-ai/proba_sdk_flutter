@@ -1,19 +1,19 @@
 name: proba_sdk_flutter
 description: Mobile framework for Proba platform.
-version: 1.0.0
+version: 2.0.0
 maintainer: Proba (https://github.com/proba-ai)
 homepage: https://proba.ai
 
 environment:
-  sdk: ">=2.7.0 <2.12.0"
-  flutter: ">=1.17.0"
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^0.5.12
-  uuid: ^2.2.2
-  http: ^0.12.2
-  dart_jsonwebtoken: ^1.6.2
-  shake: ^0.1.0
-  meta: ^1.1.8
+  shared_preferences: ^2.0.6
+  uuid: ^3.0.0
+  http: ^0.13.1
+  dart_jsonwebtoken: ^2.0.0
+  shake: ^1.0.0
+  meta: ^1.5.0

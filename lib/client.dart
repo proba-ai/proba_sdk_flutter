@@ -5,19 +5,16 @@ class _Client {
   static const _experimentsEndpoint = '/api/mobile/experiments';
   static const _experimentsOptionsEndpoint = '/api/mobile/experiments/options';
 
-  Map<String, String> _headers;
+  Map<String, String>? _headers;
 
   _Client({
-    @required String sdkToken,
-    @required String appId,
-    String deviceId,
-    String appsFlyerId,
-    String amplitudeUserId,
-    Map<String, dynamic> deviceProperties,
+    required String sdkToken,
+    required String appId,
+    String? deviceId,
+    String? appsFlyerId,
+    String? amplitudeUserId,
+    Map<String, dynamic>? deviceProperties,
   }) {
-    assert(sdkToken != null);
-    assert(appId != null);
-
     final jwt = _generateJwt(
       sdkToken: sdkToken,
       amplitudeUserId: amplitudeUserId,
@@ -32,7 +29,7 @@ class _Client {
   }
 
   Future<Map<String, dynamic>> loadExperiments({
-    @required List<String> knownExperimentsKeys,
+    required List<String> knownExperimentsKeys,
   }) async {
     final result = await _performRequest(
       endpoint: _experimentsEndpoint,
@@ -42,7 +39,7 @@ class _Client {
   }
 
   Future<List<Map<String, dynamic>>> loadExperimentsOptions({
-    @required List<String> knownExperimentsKeys,
+    required List<String> knownExperimentsKeys,
   }) async {
     final result = await _performRequest(
       endpoint: _experimentsOptionsEndpoint,
@@ -52,15 +49,16 @@ class _Client {
   }
 
   Future<dynamic> _performRequest({
-    @required String endpoint,
-    @required List<String> knownExperimentsKeys,
+    required String endpoint,
+    required List<String> knownExperimentsKeys,
   }) async {
     final uri = Uri(
-      scheme: 'https',
-      host: _host,
-      path: endpoint,
-      query: knownExperimentsKeys.map<String>((k) => "knownKeys[]=$k").join('&')
-    );
+        scheme: 'https',
+        host: _host,
+        path: endpoint,
+        query: knownExperimentsKeys
+            .map<String>((k) => "knownKeys[]=$k")
+            .join('&'));
     final response = await http.get(uri, headers: _headers);
 
     if (response.statusCode != 200) _throwError(response);
