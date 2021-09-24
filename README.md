@@ -41,7 +41,7 @@ After initialization all functionality will be available via singleton:
 ### How to fetch known test values that associated with your device?
 
 ```
-    Proba.instance().loadExperiments((List<String> experimentsKeys) {
+    Proba.instance()!.loadExperiments((List<String> experimentsKeys) {
         // Handle loaded experiments
     });
 ```
@@ -49,7 +49,7 @@ After initialization all functionality will be available via singleton:
 ### How to get the value for a specific test?
 
 ```
-    final value = Proba.instance().experiment("${TEST_KEY}");
+    final value = Proba.instance()!.experiment("${TEST_KEY}");
 ```
 
 In case of problems with no internet connection or another, the values obtained in the previous session will be used, or if they are missing, the default values specified during initialization will be used.
@@ -57,10 +57,10 @@ In case of problems with no internet connection or another, the values obtained 
 ### How to get user tests for analytics?
 
 ```
-    final value = Proba.instance().experiments;
+    final value = Proba.instance()!.experiments;
     
     // or if you need additional details for experiments
-    final value = Proba.instance().experimentsWithDetails;
+    final value = Proba.instance()!.experimentsWithDetails;
 
 ```
 
@@ -74,7 +74,7 @@ In debug mode you can see all actual tests and check how the user will see each 
 To show the debug bottom sheet you just need to turn it on in your personal cabinet and call
 
 ```
-    Proba.instance().showDebugLayer(
+    Proba.instance()!.showDebugLayer(
       context: context,
       valuesChangedCallback: (List<String> changedExperimentsKeys) {
         // Handle changed experiments
@@ -85,7 +85,7 @@ To show the debug bottom sheet you just need to turn it on in your personal cabi
 You can enable showing debug bottom sheet by performing shake motion on your device:
 
 ```
-    Proba.instance().enableDebugOnShake(
+    Proba.instance()!.enableDebugOnShake(
       context: context,
       valuesChangedCallback: (List<String> changedExperimentsKeys) {
         // Handle changed experiments
@@ -96,5 +96,5 @@ You can enable showing debug bottom sheet by performing shake motion on your dev
 or disable this behavior:
 
 ```
-    Proba.instance().disableDebugOnShake();
+    Proba.instance()!.disableDebugOnShake();
 ```
