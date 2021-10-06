@@ -5,13 +5,13 @@ Mobile framework for Proba platform.
 ## Installation
 
 1. Add this to your package's pubspec.yaml file:
-```
+```yaml
     dependencies:
       proba_sdk_flutter:
 ```
 
 2. Now in your Dart code, you can use:
-```
+```dart
     import 'package:proba_sdk_flutter/proba_sdk_flutter.dart';
 ```
 
@@ -20,7 +20,7 @@ Mobile framework for Proba platform.
 
 ### Initialization:
 
-```
+```dart
     await Proba.initialize(
       appId: "${YOUR_APP_ID}",
       sdkToken: "${YOUR_SDK_TOKEN}",
@@ -34,13 +34,13 @@ Mobile framework for Proba platform.
 
 After initialization all functionality will be available via singleton:
 
-```
+```dart
     Proba.instance()
 ```
 
 ### How to fetch known test values that associated with your device?
 
-```
+```dart
     Proba.instance()!.loadExperiments((List<String> experimentsKeys) {
         // Handle loaded experiments
     });
@@ -48,7 +48,7 @@ After initialization all functionality will be available via singleton:
 
 ### How to get the value for a specific test?
 
-```
+```dart
     final value = Proba.instance()!.experiment("${TEST_KEY}");
 ```
 
@@ -56,7 +56,7 @@ In case of problems with no internet connection or another, the values obtained 
 
 ### How to get user tests for analytics?
 
-```
+```dart
     final value = Proba.instance()!.experiments;
     
     // or if you need additional details for experiments
@@ -73,7 +73,7 @@ Before debug make sure that debug-mode for your App is turned-on on [settings pa
 In debug mode you can see all actual tests and check how the user will see each option of the test.
 To show the debug bottom sheet you just need to turn it on in your personal cabinet and call
 
-```
+```dart
     Proba.instance()!.showDebugLayer(
       context: context,
       valuesChangedCallback: (List<String> changedExperimentsKeys) {
@@ -84,7 +84,7 @@ To show the debug bottom sheet you just need to turn it on in your personal cabi
 
 You can enable showing debug bottom sheet by performing shake motion on your device:
 
-```
+```dart
     Proba.instance()!.enableDebugOnShake(
       context: context,
       valuesChangedCallback: (List<String> changedExperimentsKeys) {
@@ -95,6 +95,6 @@ You can enable showing debug bottom sheet by performing shake motion on your dev
 
 or disable this behavior:
 
-```
+```dart
     Proba.instance()!.disableDebugOnShake();
 ```
